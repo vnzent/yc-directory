@@ -2,9 +2,7 @@ import React from 'react'
 import Form from 'next/form';
 import SearchFormReset from './SearchFormReset';
 
-const SearchForm = () => {
-    const query = "Test"
-
+const SearchForm = ({ query }: { query?: string}) => {
   return (
     <Form action="/" className="search-form w-full max-w-3xl min-h-[80px] bg-white border-[5px] border-black rounded-full text-2xl mt-8 px-5 flex items-center gap-5">
         <input 
@@ -16,7 +14,7 @@ const SearchForm = () => {
 
         <div className="flex gap-2">
             {query &&  <SearchFormReset />}
-            <button type="submit" className="size-[50px] rounded-full bg-black flex justify-center items-center">
+            <button type="submit" className="size-[50px] rounded-full bg-black flex justify-center items-center text-white">
                 S
             </button>
         </div>
