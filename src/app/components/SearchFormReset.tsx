@@ -1,7 +1,10 @@
+"use client"
+
+import Link from 'next/link';
 import React from 'react'
 
 const SearchFormReset = () => {
-    
+
     const reset = () => {
       const form = document.querySelector(".search-form") as HTMLFormElement;
 
@@ -11,7 +14,11 @@ const SearchFormReset = () => {
     };
 
   return (
-    <button type="reset" onClick={reset}></button>
+    <button type="reset" onClick={reset}>
+        <Link href="/" className="size-[50px] rounded-full bg-black flex justify-center items-center text-white">
+            X
+        </Link>
+    </button>
   )
 }
 
