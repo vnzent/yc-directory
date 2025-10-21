@@ -3,6 +3,7 @@ import SearchForm from "../../components/SearchForm";
 import StartUpCard from "@/components/StartUpCard";
 import { client } from "@/sanity/lib/client";
 import { STARTUP_QUERY } from "@/sanity/lib/queries";
+import { STARTUP_QUERYResult } from "@/sanity/types";
 
 export default async function Home({
   searchParams,
@@ -20,7 +21,8 @@ export default async function Home({
           Connect With Entrepreneurs
         </h1>
         <p className="font-medium text-[20px] text-white text-center break-words">
-          Submit Ideas, Vote on Pitches, and Get Noticed in Virtual Competitions.
+          Submit Ideas, Vote on Pitches, and Get Noticed in Virtual
+          Competitions.
         </p>
         <SearchForm query={query} />
       </section>
@@ -30,11 +32,11 @@ export default async function Home({
         </p>
         <ul className="mt-7 grid sm:grid-cols-2 md:grid-cols-3 gap-5">
           {posts?.length > 0 ? (
-            posts.map((post: StartupTypeCard, index: number) => (
-              <StartUpCard key={index} post={post} />
-            ))
+            posts.map((post) => <StartUpCard key={post._id} post={post} />)
           ) : (
-            <p className="text-black-100 text-sm font-normal">No startups found</p>
+            <p className="text-black-100 text-sm font-normal">
+              No startups found
+            </p>
           )}
         </ul>
       </section>
