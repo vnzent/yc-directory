@@ -1,6 +1,8 @@
 import Image from "next/image";
 import SearchForm from "../../components/SearchForm";
 import StartUpCard from "@/components/StartUpCard";
+import { client } from "@/sanity/lib/client";
+import { STARTUP_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home({
   searchParams,
@@ -8,19 +10,7 @@ export default async function Home({
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
-  const posts = [
-    {
-      _createdAt: new Date(),
-      views: 55,
-      author: { _id: 1, name: "Vincent" },
-      _id: 1,
-      description: "This is a description",
-      image:
-        "https://plus.unsplash.com/premium_photo-1677087123392-3a3c03b69790?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2940",
-      category: "Robots",
-      title: "We Robots",
-    },
-  ];
+  const posts = await client.fetch(STARTUP_QUERY);
 
   return (
     <>
