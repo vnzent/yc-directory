@@ -10,7 +10,10 @@ const nextConfig: NextConfig = {
         hostname: "*",
       }
     ]
-  }
+  },
+  experimental: {
+    cacheComponents: true
+  },
 };
 
 export default nextConfig;

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 import "./globals.css";
+import { Suspense } from "react";
 
 const workSans = Work_Sans({
   variable: "--font-work-sans",
-  subsets: ["latin"]
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -19,10 +20,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${workSans.variable} antialiased`}
-      >
-        {children}
+      <body className={`${workSans.variable} antialiased`}>
+        <Suspense>{children}</Suspense>
       </body>
     </html>
   );
