@@ -3,6 +3,7 @@ import SearchForm from "../../components/SearchForm";
 import StartUpCard from "@/components/StartUpCard";
 import { STARTUP_QUERY } from "@/sanity/lib/queries"; 
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { STARTUP_QUERYResult } from "@/sanity/types";
 
 export default async function Home({
   searchParams,
@@ -10,7 +11,8 @@ export default async function Home({
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
-  const {data: posts} = await sanityFetch({ query: STARTUP_QUERY });
+  const params = { search: query || null }
+  const {data: posts} = await sanityFetch({ query: STARTUP_QUERY, params });
 
   return (
     <>
@@ -31,7 +33,7 @@ export default async function Home({
         </p>
         <ul className="mt-7 grid sm:grid-cols-2 md:grid-cols-3 gap-5">
           {posts?.length > 0 ? (
-            posts.map((post) => <StartUpCard key={post._id} post={post} />)
+            posts.map((post: STARTUP_QUERYResult[number]) => <StartUpCard key={post._id} post={post} />)
           ) : (
             <p className="text-black-100 text-sm font-normal">
               No startups found
